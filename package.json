@@ -1,0 +1,49 @@
+{
+  "name": "ts-react-memo",
+  "version": "0.0.0",
+  "description": "React.memo type fix",
+  "sideEffects": false,
+  "types": "./dist/dts/index.d.ts",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/mjs/index.js",
+  "react-native": "./dist/mjs/index.js",
+  "exports": {
+    ".": {
+      "require": "./dist/cjs/index.js",
+      "default": "./dist/mjs/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "type": "module",
+  "scripts": {
+    "preversion": "npm run build",
+    "postversion": "git add . && git commit -am lint || : && git push && git push --tags",
+    "build:ts": "tsc -p configs/tsconfig.cjs.json && tsc -p configs/tsconfig.mjs.json && tsc -p configs/tsconfig.dts.json",
+    "build": "rm -rf dist && npm run build:ts && echo '{ \"type\": \"commonjs\" }' >> dist/cjs/package.json"
+  },
+  "keywords": [
+    "react-hook",
+    "typescript"
+  ],
+  "files": [
+    "dist",
+    "src"
+  ],
+  "author": "iyegoroff <iegoroff@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/iyegoroff/ts-react-memo/issues"
+  },
+  "homepage": "https://github.com/iyegoroff/ts-react-memo#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iyegoroff/ts-react-memo.git"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.12",
+    "typescript": "^4.7.3"
+  },
+  "peerDependencies": {
+    "react": "*"
+  }
+}
